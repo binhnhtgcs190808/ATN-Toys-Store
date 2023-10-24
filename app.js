@@ -48,10 +48,10 @@ async function setupDatabase() {
 
   // Start the Express server
   app.listen(5000, async () => {
-    db = await connectToDatabase(); // Make sure the database connection is established
-    Store = db.collection('products'); // Assign the Store collection here
+    const connectedDB = await connectToDatabase(); // Make sure the database connection is established
+    Store = connectedDB.collection('products'); // Assign the Store collection here
   
-    app.locals.db = db; // Pass the db object as a local variable
+    app.locals.db = connectedDB; // Pass the db object as a local variable
     console.log('Server is running on port 5000');
   });
 }
