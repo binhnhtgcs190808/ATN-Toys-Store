@@ -3,7 +3,7 @@ const { MongoClient, ObjectId } = require('mongodb'); // Import MongoDB ObjectId
 const app = express();
 const router = express.Router();
 
-require('dotenv/config');
+require('dotenv').config(); // Correctly load the dotenv config
 const dbURI = process.env.CONNECTION_STRING;
 
 let db; // Database connection reference
@@ -50,7 +50,7 @@ async function setupDatabase() {
   app.listen(5000, async () => {
     const connectedDB = await connectToDatabase(); // Make sure the database connection is established
     Store = connectedDB.collection('products'); // Assign the Store collection here
-  
+
     app.locals.db = connectedDB; // Pass the db object as a local variable
     console.log('Server is running on port 5000');
   });
